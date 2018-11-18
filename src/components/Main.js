@@ -21,9 +21,11 @@ class Main extends React.Component {
       cache: false,
       success: (data) => {
         console.log(data);
+        this.setState({userData: data})
       },
       error: (xhr, status, err) => {
         alert(err);
+        this.setState({username: null})
       }
     })
   }
@@ -40,7 +42,7 @@ class Main extends React.Component {
       return (
         <React.Fragment>
           <div style={style} >
-            <Profile />
+            <Profile userData={this.props.userData} />
             <Repo />
           </div>
         </React.Fragment>
@@ -54,8 +56,8 @@ Main.propTypes = {
 }
 
 Main.defaultProps = {
-  clientId: '',
-  clientSecret: ''
+  clientId: 'ed7e01c1b9b6d52c92b2',
+  clientSecret: 'd9d45568adb04de07a8c74af883fbac48b85ebf4'
 }
 
 export default Main;

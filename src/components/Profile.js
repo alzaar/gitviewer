@@ -5,7 +5,7 @@ class Profile extends React.Component {
   render(){
     return (
       <div>
-        <h5>The App</h5>
+        <h5>{this.props.userData.name}</h5>
       </div>
     );
   }
