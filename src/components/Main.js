@@ -54,8 +54,8 @@ Main.propTypes = {
 }
 
 Main.defaultProps = {
-  clientId: 'ed7e01c1b9b6d52c92b2',
-  clientSecret: 'd9d45568adb04de07a8c74af883fbac48b85ebf4'
+  clientId: '',
+  clientSecret: ''
 }
 
 export default Main;
