@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Profile from './Profile';
 import $ from 'jquery';
+import Search from './Search';
+
 
 class Main extends React.Component {
   constructor(props){
@@ -10,7 +12,7 @@ class Main extends React.Component {
       username: 'alzaar',
       userData: {},
       userRepos: [],
-      perPage: 5
+      perPage: 10
     }
   }
   getUserData = () => {
@@ -44,6 +46,14 @@ class Main extends React.Component {
 		});
 	}
 
+  handleOnSubmit = (username) => {
+    this.setState({username: username}, () =>{
+      this.getUserData();
+      this.getUserRepos();
+    });
+
+
+  }
 
   componentDidMount() {
     this.getUserData();
@@ -59,6 +69,7 @@ class Main extends React.Component {
       return (
         <React.Fragment>
           <div style={style} >
+            <Search onSubmit={this.handleOnSubmit}/>
             <Profile name={this.state.userData.login} bio={this.state.userData.bio} image={this.state.userData.avatar_url}
             publicRepos={this.state.userData.public_repos}
             publicGists={this.state.userData.public_gists}
