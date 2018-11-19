@@ -1,9 +1,8 @@
 import React from 'react';
-
+import RepoList from './RepoList';
 class Profile extends React.Component {
 
   render(){
-    const viewProfile= `www.github.com/${this.props.name}`;
     return (
       <div>
         <div className="card">
@@ -12,7 +11,7 @@ class Profile extends React.Component {
           </div>
           <div className="card-body">
             <div className='col-md-4'>
-              <img src={this.props.image} className='img-style rounded float-left' alt='profile image' />
+              <img src={this.props.image} className='img-style rounded float-left' alt='profile' />
             </div>
             <div className='col-md-8' >
               <div className='row'>
@@ -36,6 +35,8 @@ class Profile extends React.Component {
               <a className='btn btn-outline-success' href={this.props.link} target='blank' >Visit Profile</a>
             </div>
             </div>
+            <h3>User Repositories</h3>
+            <RepoList userRepos={this.props.userRepos}/>
         </div>
       </div>
     );

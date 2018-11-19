@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Profile from './Profile';
-import Repo from './Repo';
 import $ from 'jquery';
 
 class Main extends React.Component {
@@ -10,7 +9,7 @@ class Main extends React.Component {
     this.state = {
       username: 'alzaar',
       userData: {},
-      userRepos: {},
+      userRepos: [],
       perPage: 5
     }
   }
@@ -20,7 +19,6 @@ class Main extends React.Component {
       dataType: 'json',
       cache: false,
       success: (data) => {
-        console.log(data);
         this.setState({userData: data})
       },
       error: (xhr, status, err) => {
@@ -30,9 +28,28 @@ class Main extends React.Component {
     })
   }
 
+  getUserRepos = () => {
+		$.ajax({
+			url: 'https://api.github.com/users/'+this.state.username+'/repos?per_page='+this.state.perPage+'&client_id='+this.props.clientId+'&client_secret='+this.props.clientSecret+'&sort=created',
+			dataType: 'json',
+			cache: false,
+			success: function(data){
+        console.log(data);
+				this.setState({userRepos: data});
+			}.bind(this),
+			error: function(xhr, status, err){
+				this.setState({username: null});
+				alert(err);
+			}.bind(this)
+		});
+	}
+
+
   componentDidMount() {
     this.getUserData();
+    this.getUserRepos();
   }
+
 
 
     render() {
@@ -49,7 +66,9 @@ class Main extends React.Component {
             location={this.state.userData.location}
             email={this.state.userData.email}
             link={this.state.userData.html_url}
-            following={this.state.userData.following}/>
+            following={this.state.userData.following}
+            userRepos={this.state.userRepos}
+            />
           </div>
         </React.Fragment>
       );
