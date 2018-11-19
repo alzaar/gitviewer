@@ -9,8 +9,8 @@ class Main extends React.Component {
     super(props)
     this.state = {
       username: 'alzaar',
-      userData: [],
-      userRepos: [],
+      userData: {},
+      userRepos: {},
       perPage: 5
     }
   }
@@ -42,8 +42,14 @@ class Main extends React.Component {
       return (
         <React.Fragment>
           <div style={style} >
-            <Profile userData={this.props.userData} />
-            <Repo />
+            <Profile name={this.state.userData.login} bio={this.state.userData.bio} image={this.state.userData.avatar_url}
+            publicRepos={this.state.userData.public_repos}
+            publicGists={this.state.userData.public_gists}
+            followers={this.state.userData.followers}
+            location={this.state.userData.location}
+            email={this.state.userData.email}
+            link={this.state.userData.html_url}
+            following={this.state.userData.following}/>
           </div>
         </React.Fragment>
       );

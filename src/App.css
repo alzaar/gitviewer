@@ -34,3 +34,10 @@
 .container:nth-child(2){
   margin-top: 55px;
 }
+
+.badge {
+  margin-right: 10px;
+}
+.img-style {
+  height: 250px;
+}
